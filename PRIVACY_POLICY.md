@@ -1,6 +1,6 @@
 # CoreFast Privacy Policy
 
-_Last updated: September 25, 2026_
+_Last updated: October 1, 2026_
 
 CoreFast is an intermittent fasting tracker for iOS and Android. This policy explains what data the app handles and, just as importantly, what it does not.
 
@@ -13,12 +13,17 @@ CoreFast does not collect, transmit, or sell your personal data. CoreFast has no
 CoreFast stores the following locally on your device only:
 
 - Your selected fasting plan and settings (schedule, notification preferences, units)
-- Your fasting session history (start/end times, status, optional notes)
+- Your fasting session history (start/end times, status, optional notes), and anything you add to a fast: hunger check-ins, what broke it, and whether you walked after your meal
 - Your daily hydration log
+- If you start any of the optional challenges, which ones and their dates, and for the sugar-free challenge your daily answers
 - If you use the optional Sunrise to sunset plan, the location coordinates it needs — see "Location" below
 - If the app crashes, a local error log (the error message and a stack trace) so it can show you what happened on your next launch
 
-Your plan, sessions, hydration log, and saved location are encrypted at rest (AES-256-GCM) using a key held in the iOS Keychain or Android Keystore, marked device-only so it is never copied to iCloud Keychain, Android auto-backup, or transferred between devices. The crash log is kept unencrypted in local app storage — it exists only so the app can show you what happened after a crash, and it is cleared as soon as you dismiss that message. None of this data is synced to any server, because CoreFast has no server.
+All of this (your plan, sessions, hydration log, challenges and saved location) is encrypted at rest (AES-256-GCM) using a key held in the iOS Keychain or Android Keystore, marked device-only so it is never copied to iCloud Keychain, Android auto-backup, or transferred between devices. The crash log is kept unencrypted in local app storage — it exists only so the app can show you what happened after a crash, and it is cleared as soon as you dismiss that message. None of this data is synced to any server, because CoreFast has no server.
+
+## Widgets, watch, and the Lock Screen
+
+So they can show your fast at a glance, CoreFast keeps a small summary for its home-screen widgets and, if you use one, its watch app: your current plan, the current fast's start and end times, today's water, and your streak. This summary is stored in the app's own private storage on your device (on iOS, the app's App Group, shared only with CoreFast's widget and watch app); it is not encrypted, because widgets must read it without opening the app. It is sent to your paired watch directly by your phone's operating system (Apple's WatchConnectivity or Google's Wear OS Data Layer), never to CoreFast or any server. If you turn on Live fasting status, your countdown also shows on the Lock Screen or in the notification shade, where anyone who can see your screen can see it.
 
 ## What CoreFast does not do
 
@@ -32,11 +37,11 @@ Your plan, sessions, hydration log, and saved location are encrypted at rest (AE
 
 ## Location
 
-CoreFast only requests your device location if you choose the optional Sunrise to sunset fasting plan, which needs it to calculate that day's sunrise and sunset. The app asks for a single, low-accuracy location reading (not continuous or background tracking) each time you select that plan, and saves the resulting coordinates on-device — encrypted alongside your other settings, the same as everything else CoreFast stores — so the calculation can run each day without asking again. This location is never transmitted to any server or shared with any third party. Choosing any other plan never requests or uses your location, and you can clear a saved location at any time via "Delete all local data" in Settings.
+CoreFast only requests your device location if you choose the optional Sunrise to sunset fasting plan, which needs it to calculate that day's sunrise and sunset. The app asks for a single, approximate location reading (not precise, continuous or background location; on Android approximate location is the only kind it can request, and on iOS it is the default) when you choose that plan or tap "Update my location" on it, and saves the resulting coordinates on-device — encrypted alongside your other settings, the same as everything else CoreFast stores — so the calculation can run each day without asking again. This location is never transmitted to any server or shared with any third party. Choosing any other plan never requests or uses your location, and you can clear a saved location at any time via "Delete all local data" in Settings.
 
 ## Notifications
 
-If you enable local reminders, CoreFast schedules notifications directly on your device using the operating system's notification framework. These reminders are generated and delivered entirely on-device; no reminder content is sent to or through any server.
+If you enable local reminders, or the evening reminder of the optional sugar-free challenge, CoreFast schedules notifications directly on your device using the operating system's notification framework. These reminders are generated and delivered entirely on-device; no reminder content is sent to or through any server.
 
 ## Backup and export
 
@@ -44,7 +49,7 @@ CoreFast lets you export a backup of your data as a plain JSON file, which you c
 
 ## Data deletion
 
-You can permanently delete all app data from Settings at any time by choosing "Delete all local data." This removes your sessions, preferences, and hydration history from the device and destroys the on-device encryption key. This cannot be undone. Uninstalling the app also removes its local data.
+You can permanently delete all app data from Settings at any time by choosing "Delete all local data." This removes your sessions, preferences, hydration history, challenges and saved location from the device, clears the summary shown on widgets and your watch, and destroys the on-device encryption key. This cannot be undone. Uninstalling the app also removes its local data.
 
 ## Children's privacy
 
