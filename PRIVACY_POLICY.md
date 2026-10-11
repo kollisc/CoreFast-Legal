@@ -1,43 +1,105 @@
 # CoreFast Privacy Policy
 
-_Last updated: October 1, 2026_
+_Last updated: October 11, 2026_
 
-CoreFast is an intermittent fasting tracker for iOS and Android. This policy explains what data the app handles and, just as importantly, what it does not.
+CoreFast is an intermittent fasting tracker for iOS and Android, for adults 18 and over. This policy explains what data the app handles and, just as importantly, what it does not.
 
 ## Summary
 
-CoreFast does not collect, transmit, or sell your personal data. CoreFast has no backend server, no user accounts, and no analytics. Everything you enter stays on your device.
+CoreFast keeps your fasting history, hydration logs, settings, and connected health readings on your device. It has no user accounts, advertising, or analytics SDKs. Optional Social Circles send end-to-end encrypted updates, limited to what you choose to share with each circle, through a short-lived relay so that circle's members can see them. Invites and exports leave your device only when you choose to copy or share them. CoreFast does not sell your data.
 
 ## What CoreFast stores
 
 CoreFast stores the following locally on your device only:
 
 - Your selected fasting plan and settings (schedule, notification preferences, units)
+- If you answer the optional health check, your answers to its four questions (yes, no or prefer not to say): whether you have had an eating disorder, are pregnant or breastfeeding, take certain diabetes medicines, or are frail, immunocompromised or have had a transplant. They are used only on your device, to adjust which features and notes the app shows. They are never sent to CoreFast, the Circles relay or anyone else, and they are not included in backup files. You can change or clear them in Settings → Health check
 - Your fasting session history (start/end times, status, optional notes), and anything you add to a fast: hunger check-ins, what broke it, and whether you walked after your meal
 - Your daily hydration log
+- If you use the optional daily check-in ("Did today go as planned?"), your answer for each day (yes, mostly or not today) and when you gave it. It is used only on your device, for the count in Insights, and is included in backup files like your hunger check-ins. You can turn the check-in off in Settings → On Today
 - If you start any of the optional challenges, which ones and their dates, and for the sugar-free challenge your daily answers
+- Your streak and the achievements it has earned (which streak milestones you reached, and when), and small display choices such as which notices you've dismissed
+- If you use Social Circles, circle membership, shared encryption keys, nicknames, received member updates, notes and reactions, and your choices for each circle: what it can see, its notification settings, who you've muted, any rest periods you set, and which milestone (if any) you chose to share
+- If you turn on Feelings for a circle, your feelings history (one feeling per day). Only today's feeling is ever shared, and only with circles where Feelings is on; past days stay on your device
+- If you answer the check-ins offered during a longer fast, your answers
 - If you use the optional Sunrise to sunset plan, the location coordinates it needs — see "Location" below
 - If the app crashes, a local error log (the error message and a stack trace) so it can show you what happened on your next launch
 
-All of this (your plan, sessions, hydration log, challenges and saved location) is encrypted at rest (AES-256-GCM) using a key held in the iOS Keychain or Android Keystore, marked device-only so it is never copied to iCloud Keychain, Android auto-backup, or transferred between devices. The crash log is kept unencrypted in local app storage — it exists only so the app can show you what happened after a crash, and it is cleared as soon as you dismiss that message. None of this data is synced to any server, because CoreFast has no server.
+All of this except the crash log is encrypted at rest (AES-256-GCM) using a key held in the iOS Keychain or Android Keystore, marked device-only so it is never copied to iCloud Keychain, Android auto-backup, or transferred between devices. The crash log is kept unencrypted in local app storage — it exists only so the app can tell you about a crash (and let you share its technical details if you choose), and it is cleared as soon as you dismiss that message or delete your data. Your full local records are not uploaded to the Circles relay; only the optional encrypted updates described below are sent.
+
+## Social Circles and invitations (optional)
+
+When you create or join a circle, CoreFast publishes updates that are end-to-end encrypted, so only that circle's members can read them. What each update carries depends on the choices you make for that circle:
+
+- Your circle nickname and your status (fasting, eating, completed, or resting). If you share your time with that circle, your elapsed and goal minutes too; if you share status only, just whether you're fasting or eating; if you share nothing, you appear as resting. If you set yourself as resting, the update says only that.
+- Notes you send (chosen from preset phrases), with who each is for, and reactions such as a cheer.
+- Start-together proposals you make, whether you joined one, and whether your fast started in its window.
+- If you pair with a buddy: who your buddy is, a daily ✓ when you've logged that day, and the emoji you send them. These travel in your circle update, so anyone in that circle can read them, not only your buddy.
+- How many days you've logged since joining the circle and this week, for the circle's garden and weekly recap. These are not sent in simple time logging.
+- Your feeling for today, only if you turned on Feelings for that circle. Earlier days' feelings are never sent.
+- A milestone you reached, only if you turned on Milestones for that circle (not in simple time logging).
+
+Notes, proposals and a buddy pairing you set up are sent even when you share nothing else, since they exist only to be seen by the circle. Your streak is no longer sent. If the circle runs a group challenge, your updates also carry your result for each day of it (met, close, or missed); in a team hours challenge they carry your total fasted hours since the challenge began instead. For a water challenge the result comes from the water you logged in CoreFast, never from Apple Health or Health Connect: a day that included water imported from Health shares no mark (unknown) unless your CoreFast water alone met the goal, and Health amounts are never shared. A circle's host also publishes changes to the circle itself: a member they removed and that the circle was closed. When the host role is handed over, the former host keeps announcing who the current host is and when the role changed, for as long as that member remains host. When you leave a circle or delete all data, CoreFast sends one last encrypted update saying you left, so members take you off their list; it's skipped if you're offline. Circle members share an AES-256-GCM key and can read these updates. Anyone holding an invitation or that key can access the circle; this is not per-member identity verification. Your full fasting history, your feelings history, and your connected health readings are not sent to the relay.
+
+The Cloudflare-hosted relay stores encrypted envelopes in short-lived buckets for up to 24 hours, with older envelopes also removed as buckets fill. Leaving a circle or deleting local data does not recall copies already received by members or immediately delete previously published envelopes. Members may retain their received copies.
+
+Private invitation codes contain the circle key. Copying places the code on your clipboard; sharing sends it to the messaging service and recipients you select. Share only with trusted people. The current shared invitation uses a compact code for manual paste in CoreFast, not a secret-bearing web link. The dedicated invitation website serves app-association files and instructions; it does not accept or forward private codes.
+
+Relay and invitation-host providers may process connection metadata such as IP address, request timing, and network-error reports under their own policies. Worker observability is disabled, but this does not establish that provider-level logs or reporting are absent.
 
 ## Widgets, watch, and the Lock Screen
 
-So they can show your fast at a glance, CoreFast keeps a small summary for its home-screen widgets and, if you use one, its watch app: your current plan, the current fast's start and end times, today's water, and your streak. This summary is stored in the app's own private storage on your device (on iOS, the app's App Group, shared only with CoreFast's widget and watch app); it is not encrypted, because widgets must read it without opening the app. It is sent to your paired watch directly by your phone's operating system (Apple's WatchConnectivity or Google's Wear OS Data Layer), never to CoreFast or any server. If you turn on Live fasting status, your countdown also shows on the Lock Screen or in the notification shade, where anyone who can see your screen can see it.
+So they can show your fast at a glance, CoreFast keeps a small summary for its widgets and, if you use one, its watch app: your current plan, the current fast's start and end times, today's water, and your streak. On Android this summary is kept in the app's private storage, encrypted with a key held in the phone's secure key store (Android Keystore). If that key store fails on a device, the summary falls back to the app's private storage without that encryption, and CoreFast moves it back into encrypted storage as soon as the key store works again. On iOS it is kept in the app's App Group, shared only with CoreFast's widgets and watch app; it is not encrypted by CoreFast (only by iOS's own data protection), because widgets must read it without opening the app. It is sent to your paired watch directly by your phone's operating system (Apple's WatchConnectivity), never to CoreFast or any server.
+
+With Apple Health connected, today's sleep, steps, active calories, latest glucose, resting heart rate and HRV are also sent from your iPhone directly to your Apple Watch (over Apple's WatchConnectivity) while CoreFast is open, shown there and kept only in memory — never stored on either device or sent to CoreFast or any server. They are not part of the summary above, so widgets never show them, and the watch hides them on its dimmed Always On face.
+
+What shows on the Lock Screen: on iPhone you can add CoreFast's widget to the Lock Screen. While the phone is locked, its zone, plan, timer and caption ("left", "eat", "over") are hidden; the plain progress ring or bar still shows, without any numbers or words. If you turn on Live fasting status, your countdown also shows as an iPhone Live Activity or an Android notification. On iPhone, the Live Activity's Lock Screen banner (timer, zone, plan, end time and messages such as "You made it.") is marked private, so iOS hides it while the phone is locked; the Dynamic Island, shown while you use an unlocked phone, is not hidden. On Android, the live fasting notification is hidden from a locked phone and appears in the notification shade once it is unlocked, where anyone who can see your screen can see it. On Android 14 and later you can swipe it away; it stays hidden for the rest of that fast, and turning Live fasting status off and on again brings it back. On Android, reminders on the lock screen follow your phone's notification setting (for example, "hide sensitive content").
+
+Siri, Shortcuts and quick controls: CoreFast's Siri answers ("How's my fast") are made on your iPhone from the same summary above, never from Apple Health. Starting or ending a fast or logging water from Siri, a Control, an Android app shortcut or the Quick Settings tile is saved on your phone in the same way as a widget tap; CoreFast sends none of it anywhere (how Apple handles your voice request to Siri is covered by Apple's own policy). If you add CoreFast's `Fast` control to your iPhone's Lock Screen, or its Quick Settings tile on Android, it shows whether you're fasting to anyone who can see your phone.
 
 ## What CoreFast does not do
 
 - It does not require an account, sign-in, or email address.
-- It does not use cloud sync or a remote database.
+- It does not upload your full local records to cloud storage. Optional Circles use a short-lived encrypted relay.
 - It does not use advertising identifiers or show ads.
-- It does not use third-party analytics, crash reporting, or tracking SDKs of any kind.
+- It does not use third-party analytics, crash-reporting, or advertising-tracking SDKs. When you opt in to Social Circles, relay and network providers may process connection metadata, such as IP address and request timing, under their own policies.
+- It does not fetch articles in the background. The Learn summaries are built into the app; only when you tap "Read the full article" does CoreFast open that publisher's page in the in-app browser, and that site's own privacy policy then applies. CoreFast adds nothing to the link and sends none of your data with it.
 - It does not access your contacts, camera, or photo library.
-- It does not read or write Apple HealthKit or Android Health Connect data (this app does not currently integrate with either).
+- It does not sell your data. Optional Circles transmit encrypted updates, and deliberate sharing/export uses the services you choose.
 - It does not access your location unless you specifically choose the optional Sunrise to sunset fasting plan — see "Location" below.
+
+## Apple Health and Android Health Connect (Optional Integration)
+
+CoreFast provides an optional, opt-in integration with **Apple Health** (on iOS) and **Android Health Connect** (on Android). This integration is completely turned off by default.
+
+### What is read (with your consent)
+When you enable health synchronization in CoreFast Settings, the app may read the following metrics directly from your device's health store:
+- **Sleep:** Read wake-up time and sleep-stage estimates to display recorded sleep and meal-time patterns.
+- **Heart Rate, Resting Heart Rate & HRV:** Read resting heart rate and heart-rate variability to compare recorded values with meal times. For a night with no resting-heart-rate record, CoreFast reads that night's heart rate (midnight to 6 AM) and works out an estimate on your device, always labelled as estimated and never mixed into comparisons. These readings do not measure overnight recovery or establish a cause.
+- **Body Weight:** Read your latest logged weight to display trends alongside your fasting history.
+- **Hydration:** Import water logged in other apps or on a paired watch toward your daily hydration goal.
+- **Other readings:** Read estimated active/resting energy, steps, body composition, breathing rate, blood oxygen, and blood sugar when health sync and the relevant controls are enabled. On Android, CoreFast also reads total calories burned, to work out active energy (total less resting) when your watch or phone records no active energy; with simple time logging, calories are not shown. Sleep controls also gate breathing and blood oxygen; weight controls also gate body composition. Energy, steps, and blood sugar currently follow the master health-sync control.
+- **Reading source:** For heart and blood-sugar readings, CoreFast reads the name of the app that wrote them (for example, Garmin Connect or Dexcom) to show where a reading came from. Like all health readings, it stays on your device.
+
+### What is written (with your consent)
+- **Strictly Read-Only Mode:** CoreFast operates in strictly read-only mode to safeguard your on-device privacy. CoreFast never writes, modifies, or exports any data to Apple Health or Android Health Connect.
+
+### Privacy and Data Handling Guarantees
+- **On-Device by Default:** Health readings are queried and processed on your device, and are not sent to the Circles relay. A health summary, or a water spreadsheet showing how much came from Health, leaves the device only when you deliberately export/share it. A feeling you pick in Circles is something you enter yourself, not a health reading; today's feeling is shared only with circles where you turn on Feelings, and never otherwise.
+- **No Advertising or Profiling:** Health data is not sold or used for advertising or profiling. If you share a summary, the destination and recipients you choose receive its contents.
+- **Control & Revocation:** The main health switch disables all app health reads, with additional controls for imported water, sleep/breathing/oxygen, heart rate/HRV, and weight/body composition. You can also revoke CoreFast's permissions directly through your device's operating system settings (**Settings > Health** on iOS, or **Settings > Security & Privacy > Health Connect** on Android).
 
 ## Location
 
-CoreFast only requests your device location if you choose the optional Sunrise to sunset fasting plan, which needs it to calculate that day's sunrise and sunset. The app asks for a single, approximate location reading (not precise, continuous or background location; on Android approximate location is the only kind it can request, and on iOS it is the default) when you choose that plan or tap "Update my location" on it, and saves the resulting coordinates on-device — encrypted alongside your other settings, the same as everything else CoreFast stores — so the calculation can run each day without asking again. This location is never transmitted to any server or shared with any third party. Choosing any other plan never requests or uses your location, and you can clear a saved location at any time via "Delete all local data" in Settings.
+CoreFast only requests your device location if you choose the optional Sunrise to sunset fasting plan, which needs it to calculate that day's sunrise and sunset. The app asks for a single, approximate location reading (not precise, continuous or background location; on Android approximate location is the only kind it can request, and on iOS it is the default) when you choose that plan or tap "Update my location" on it, and saves the resulting coordinates on-device, rounded to about a kilometre (two decimal places) — encrypted alongside your other settings, the same as everything else CoreFast stores — so the calculation can run each day without asking again. This location is never transmitted to any server or shared with any third party. Choosing any other plan never requests or uses your location, and you can clear a saved location at any time via "Delete all local data" in Settings.
+
+## Insights and on-device explanations
+
+Insights such as "Your read" and "Your pattern" are worked out on your device from your own fasts and, if you connected it, your health data. On iPhones with Apple Intelligence, "Explain my week" can ask that model, on your phone, to put a short summary of these facts into words. Only a few numbers-only statements are given to it: no names, dates, notes or location. Nothing is sent to CoreFast, to us, or to any server for this, and it runs only when you tap. On other phones the same facts are shown as plain text. You can turn all of these insights off in Settings under Patterns in my data, or each one on its own. If a written explanation seems wrong, "Report a problem" hides it; you can also choose to email it to us from your own mail app, and nothing is sent unless you send that email.
+
+## Circle membership on this device
+
+For each circle you join, CoreFast keeps a small note in your device's secure keychain of which circle member you are, so rejoining with the same code after an app reset brings you back as the same member. It stays on this device, is never sent anywhere, and is not carried to a new phone. It is removed when you leave that circle yourself, and every such note is removed when you use Delete all data (after a host removes you it is kept, so a rejoin is still recognized as the removed member). On iPhone, the keychain keeps it even if you delete the app, until you reinstall and use Delete all data.
 
 ## Notifications
 
@@ -45,19 +107,23 @@ If you enable local reminders, or the evening reminder of the optional sugar-fre
 
 ## Backup and export
 
-CoreFast lets you export a backup of your data as a plain JSON file, which you control (for example, saving it to Files or a cloud drive of your choice through your device's own share sheet). Unlike the copy CoreFast keeps encrypted on your device, the exported file itself is not encrypted, so anyone who gets hold of it can read its contents. CoreFast does not upload this file anywhere itself. Because you choose where the exported file goes, you are responsible for the privacy of that destination.
+CoreFast lets you export a backup as a plain JSON file, including circle memberships and shared keys if present. Backups also include your feelings history, mutes, rest periods, milestone choice, circle notification settings and long-fast check-in answers. Backups leave out your health check answers, so a phone restored from one asks the health check again. It also lets you share a plain-text health summary containing selected fasting, water, and available heart readings, and spreadsheet (CSV) files of your fasts, daily water (including how much came from Apple Health or Health Connect) and check-ins. A spreadsheet is created only when you choose to export one, and leaves your device only where you send it. These files are not encrypted: anyone who receives them can read them, and a backup's circle keys grant circle access. The destination and recipients are chosen through your device's share sheet. CoreFast does not upload these files automatically. Temporary backup and spreadsheet files are removed when you next open or return to the app (once a save in progress can finish) or export again.
 
 ## Data deletion
 
-You can permanently delete all app data from Settings at any time by choosing "Delete all local data." This removes your sessions, preferences, hydration history, challenges and saved location from the device, clears the summary shown on widgets and your watch, and destroys the on-device encryption key. This cannot be undone. Uninstalling the app also removes its local data.
+You can delete your saved app data from Settings by choosing "Delete all local data." This removes your sessions, preferences, hydration history, challenges, circle memberships and keys, saved location and crash log from the device, clears the summary shown on widgets and your watch, and destroys the on-device state encryption key. This cannot be undone. It does not delete files you exported, messages you shared, copies retained by circle members, or still-unexpired relay envelopes. When you leave a circle or delete all data, CoreFast sends one last encrypted update saying you left, so members take you off their list; it's skipped if you're offline.
+
+## App updates
+
+CoreFast does not check for or download updates by itself. Updates come only through the App Store and Google Play.
 
 ## Children's privacy
 
-CoreFast does not knowingly collect any information from anyone, including children, because it does not collect information at all. The app includes a health and safety disclaimer and is not intended to provide medical advice to any user.
+CoreFast is intended only for adults 18 and over; its welcome guide says so and asks anyone younger not to use its fasting plans. CoreFast does not knowingly collect any information from anyone, including children, because it does not collect information at all. The app includes a health and safety disclaimer and is not intended to provide medical advice to any user.
 
 ## Changes to this policy
 
-If CoreFast's data practices change (for example, if an optional, opt-in integration such as Apple HealthKit or Android Health Connect is added in a future version), this policy will be updated to describe exactly what is read or written and will remain opt-in only, with no automatic upload to any server operated by us.
+If CoreFast's data practices change in future versions, this policy will be updated accordingly and all handling of your data will remain opt-in only, with no automatic upload of your data to any server.
 
 ## Contact
 
